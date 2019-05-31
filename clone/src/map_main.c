@@ -240,6 +240,70 @@ int main()
                 free((void*) str);
             }
         }
+        else if (strcmp(l->string, "newRoute") == 0)
+        {
+            if (s != 4)
+            {
+                fprintf(stderr, "ERROR %u\n", lineNr);
+                goto skip;
+            }
+            else
+            {
+                if (!newRoute(m, Char_to_Unsigned(l->nast->string), l->nast->nast->string, l->nast->nast->nast->string))
+                {
+                    fprintf(stderr, "ERROR %u\n", lineNr);
+                    goto skip;
+                }
+            }
+        }
+        else if (strcmp(l->string, "extendRoute") == 0)
+        {
+            if (s != 3)
+            {
+                fprintf(stderr, "ERROR %u\n", lineNr);
+                goto skip;
+            }
+            else
+            {
+                if (!extendRoute(m, Char_to_Unsigned(l->nast->string), l->nast->nast->string))
+                {
+                    fprintf(stderr, "ERROR %u\n", lineNr);
+                    goto skip;
+                }
+            }
+        }
+        else if (strcmp(l->string, "removeRoad") == 0)
+        {
+            if (s != 3)
+            {
+                fprintf(stderr, "ERROR %u\n", lineNr);
+                goto skip;
+            }
+            else
+            {
+                if (!removeRoad(m, l->nast->string, l->nast->nast->string))
+                {
+                    fprintf(stderr, "ERROR %u\n", lineNr);
+                    goto skip;
+                }
+            }
+        }
+        else if (strcmp(l->string, "removeRoute") == 0)
+        {
+            if (s != 2)
+            {
+                fprintf(stderr, "ERROR %u\n", lineNr);
+                goto skip;
+            }
+            else
+            {
+                if(!removeRoute(m, Char_to_Unsigned(l->nast->string)))
+                {
+                    fprintf(stderr, "ERROR %u\n", lineNr);
+                    goto skip;
+                }
+            }
+        }
         else
         {
             if(s < 5)

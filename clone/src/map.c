@@ -2723,6 +2723,45 @@ void add_to_Route(Map *map, unsigned routeId, const char *city)
   map->routes[routeId]->city = c;
 }
 
+/** @brief removes route with given Id from the map
+ * removes route with given in params Id,
+ * if there is no route with given Id it doesn,t change the map
+ * @param[in,out] map - pointer to struct that represents the map
+ * @param[in] routeId - unsigned that represents Id of route
+ * @return true if route with given Id has been removed,
+ * else returns false
+ */
+bool removeRoute(Map *map, unsigned routeId){
+  if(map == NULL ||
+          routeId == 0 ||
+          routeId > 999)
+  {
+    return false;
+  }
+  if(map->routes[routeId] == NULL)
+  {
+    return false;
+  }
+    Route *help = map->routes[routeId];
+    Route *r = help;
+    if(r == NULL)
+    {
+      return false;
+    }
+    while(r->prev != NULL){
+      r->city->routes[routeId] = false;
+      r->prev_road->routes[routeId] = false;
+      help = r;
+      r = r->prev;
+      free(help);
+    }
+    r->city->routes[routeId] = false;
+    free(r);
+
+  map->routes[routeId] = NULL;
+  return true;
+}
+
 
 /** @brief Udostępnia informacje o drodze krajowej.
  * Zwraca wskaźnik na napis, który zawiera informacje o drodze krajowej. Alokuje

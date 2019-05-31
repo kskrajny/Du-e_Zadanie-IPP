@@ -162,11 +162,21 @@ void add_to_Route(Map *map, unsigned routeId, const char *city);
  * checks if route with given routeId exists
  * and if it is between 0 and 999
  * @param[in] map - pointer to struct that represents the map
- * @param[in] routeId - unsigned tthat represents Id of route
+ * @param[in] routeId - unsigned that represents Id of route
  * @return true if the route with given routeId doesnt exist
  * else returns false
  */
 bool checkRouteId(Map *map, unsigned routeId);
+
+/** @brief removes route with given Id from the map
+ * removes route with given in params Id,
+ * if there is no route with given Id it doesn,t change the map
+ * @param[in,out] map - pointer to struct that represents the map
+ * @param[in] routeId - unsigned that represents Id of route
+ * @return true if route with given Id has been removed,
+ * else returns false
+ */
+bool removeRoute(Map *map, unsigned routeId);
 
 /** @brief Udostępnia informacje o drodze krajowej.
  * Zwraca wskaźnik na napis, który zawiera informacje o drodze krajowej. Alokuje
